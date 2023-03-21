@@ -1,8 +1,8 @@
 import { MachineConfig, send, Action, assign } from "xstate";
 
-var zodiac_descriptions: Array<string> = ["It uses emotional energy as fuel, cultivating powerful wisdom through both the physical and unseen realms. In fact, it derives its extraordinary courage from its psychic abilities, which is what makes this sign one of the most complicated, dynamic signs of the zodiac. Do you know what sign it is?", "Balance, harmony, and justice define its energy. It is represented by the scales, an association that reflects its fixation on establishing equilibrium. It is obsessed with symmetry and strives to create equilibrium in all areas of life — especially when it comes to matters of the heart. Do you know what sign it is?", "It is climbing the mountain straight to the top and knows that patience, perseverance, and dedication are the only way to scale. It is skilled at navigating both the material and emotional realms. Do you know what sign it is?"];
+var zodiac_descriptions: Array<string> = ["It uses emotional energy as fuel, cultivating powerful wisdom through both the physical and unseen realms. In fact, it derives its extraordinary courage from its psychic abilities, which is what makes this sign one of the most complicated, dynamic signs of the zodiac. Do you know what sign it is?", "Balance, harmony, and justice define its energy. It is represented by the scales, an association that reflects its fixation on establishing equilibrium. It is obsessed with symmetry and strives to create equilibrium in all areas of life — especially when it comes to matters of the heart. Do you know what sign it is?", "It is climbing the mountain straight to the top and knows that patience, perseverance, and dedication are the only way to scale. It is skilled at navigating both the material and emotional realms. Do you know what sign it is?", "Naturally, this dynamic fire sign is no stranger to competition. Bold and ambitious, it dives headfirst into even the most challenging situations—and they'll make sure they always come out on top! Do you know what sign it is?", "No other sign is more likely to take a six-hour bath, followed by a luxurious Swedish massage and decadent dessert spread! It is an earth sign represented by the bull. Like their celestial spirit animal, it enjoy relaxing in serene, bucolic environments surrounded by soft sounds, soothing aromas, and succulent flavors. Do you know what sign it is?", "Represented by the crab, it seamlessly weaves between the sea and shore representing the ability to exist in both emotional and material realms. It is highly intuitive and their psychic abilities manifest in tangible spaces. Do you know what sign it is?", "Passionate, loyal, and infamously dramatic, it is the king of the celestial jungle. It is delighted to embrace their royal status: Vivacious, theatrical, and fiery, it loves to bask in the spotlight and celebrate… well, themselves. Do you know what sign it is?", "It is logical, practical, and systematic in its approach to life. It is an earth sign historically represented by the goddess of wheat and agriculture. This earth sign is a perfectionist at heart and isn’t afraid to improve skills through diligent and consistent practice. Do you know what sign it is?", "This fire sign knows no bounds. Represented by the archer, it is always on a quest for knowledge. The last fire sign of the zodiac, it launches its many pursuits like blazing arrows, chasing after geographical, intellectual, and spiritual adventures. Do you know what sign it is?", "Innovative, progressive, and shamelessly revolutionary, it is represented by the water bearer, the mystical healer who bestows water, or life, upon the land. Accordingly, it is the most humanitarian astrological sign. At the end of the day, it is dedicated to making the world a better place. Do you know what sign it is?", "It is the most intuitive, sensitive, and empathetic sign of the entire zodiac — and that’s because it’s the last of the last. As the final sign, it has absorbed every lesson — the joys and the pain, the hopes and the fears — learned by all of the other signs. It's symbolized by two fish swimming in opposite directions. Do you know what sign it is?"];
 
-var zodiac_actual: Array<string> = ["scorpio", "libra", "capricorn"];
+var zodiac_actual: Array<string> = ["scorpio", "libra", "capricorn", "aries", "taurus", "cancer", "leo", "virgo", "sagittarius", "aquarius", "pisces"];
 
 function future_tell(){
   let predictions: Array<string> = ["Lucky you! The stars say that lots of good things are going to happen, and that you will be fulfilled in this aspect. All you need to do is wait, and this won't take long!", "With a little effort, things are going to take a great turn. Do not hesitate to take the advantage of the planetary movements, this is the right moment to take an action. All your efforts will be rewarded sooner than you expect!", "Jupiter's gravity force is exceptionally strong right now. This gravitational attraction attracts major changes in this aspect of your life. You'd better get ready for a major twist of events which will happen very soon.", "Be careful with your decisions if you don't want to have troubles in this aspect. Do not make any sudden decisions without thinking, the star constellations in the sky tell that stability is the key. Disturbing the current state with any sudden decisions and actions will have tragic consequences.", "I see nothing but stability. Your life will remain stable in this area, I expect no major breakthroughs or troubles to arise."];
@@ -27,11 +27,14 @@ const evaluator = (context: SDSContext) => {
   if (context.score === 0) {
     return "I sadly see that you don't know any of them. Improve yourself.";
   }
-  if (context.score === 3) {
+  if (context.score === 11) {
     return "Wow! I'm impressed - you know all of them!";
   }
-  if (context.score > 0) {
-    return "Well done! Seems like you know a bit!"; 
+  if (context.score > 0 && context.score < 6) {
+    return "You know a tiny bit, you should expand your knowledge!"; 
+  }
+  if (context.score > 5 && context.score < 11) {
+    return "Well done! Seems like you know quite a few!"; 
   }
 };
 
@@ -66,6 +69,38 @@ const grammar: Grammar = {
     intent: "None", 
     entities: { sign: "capricorn" },
   },
+  "it's pisces": {
+    intent: "None",
+    entities: { sign: "pisces" },
+  },
+  "it's aquarius": {
+    intent: "None", 
+    entities: { sign: "aquarius" },
+  },
+  "it's sagittarius": {
+    intent: "None", 
+    entities: { sign: "sagittarius" },
+  },
+  "it's virgo": {
+    intent: "None",
+    entities: { sign: "virgo" },
+  },
+  "it's leo": {
+    intent: "None", 
+    entities: { sign: "leo" },
+  },
+  "it's cancer": {
+    intent: "None", 
+    entities: { sign: "cancer" },
+  },
+  "it's aries": {
+    intent: "None",
+    entities: { sign: "aries" },
+  },
+  "it's taurus": {
+    intent: "None", 
+    entities: { sign: "taurus" },
+  },
   libra: {
     intent: "None",
     entities: { sign: "libra" },
@@ -77,6 +112,38 @@ const grammar: Grammar = {
   capricorn: {
     intent: "None", 
     entities: { sign: "capricorn" },
+  },
+  pisces: {
+    intent: "None",
+    entities: { sign: "pisces" },
+  },
+  aquarius: {
+    intent: "None", 
+    entities: { sign: "aquarius" },
+  },
+  sagittarius: {
+    intent: "None", 
+    entities: { sign: "sagittarius" },
+  },
+  virgo: {
+    intent: "None",
+    entities: { sign: "virgo" },
+  },
+  leo: {
+    intent: "None", 
+    entities: { sign: "leo" },
+  },
+  cancer: {
+    intent: "None", 
+    entities: { sign: "cancer" },
+  },
+  aries: {
+    intent: "None",
+    entities: { sign: "aries" },
+  },
+  taurus: {
+    intent: "None", 
+    entities: { sign: "taurus" },
   },
   health: {
     intent: "None",
@@ -213,7 +280,7 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = {
         RECOGNISED: [
           {
             target: ".next_announcement",
-            cond: ((context) => !!getEntity(context, "sign")) && ((context) => context.count < 2),
+            cond: ((context) => !!getEntity(context, "sign")) && ((context) => context.count < 10),
             actions: [
               assign({count: (context) => add_one(context),}),
               assign({zodiac_answers: (context) => context.zodiac_answers.concat([getEntity(context, "sign")]),}),
@@ -221,7 +288,7 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = {
           },
           {
             target: "evaluate",
-            cond: ((context) => !!getEntity(context, "sign")) && ((context) => context.count >= 2),
+            cond: ((context) => !!getEntity(context, "sign")) && ((context) => context.count >= 10),
             actions: [
               assign({score: (context) => compare(context),}),
               assign({zodiac_answers: (context) => context.zodiac_answers.concat([getEntity(context, "sign")]),}),
